@@ -1,10 +1,10 @@
-# 🚀 Projeto MVC em C++ com PostgreSQL (`libpqxx`)
+# Projeto MVC em C++ com PostgreSQL (`libpqxx`)
 
 Este projeto é uma aplicação exemplo no padrão MVC (Model-View-Controller) escrita em C++, utilizando a biblioteca `libpqxx` para comunicação com o banco de dados PostgreSQL.
 
 ---
 
-## 📋 Requisitos
+## Requisitos
 
 - C++17 ou superior
 - CMake ≥ 3.10
@@ -14,9 +14,9 @@ Este projeto é uma aplicação exemplo no padrão MVC (Model-View-Controller) e
 
 ---
 
-## 🛠️ Instalação
+## Instalação
 
-### 🔹 Instale dependências no Ubuntu/WSL:
+### Instale dependências no Ubuntu/WSL:
 
 ```bash
 sudo apt update
