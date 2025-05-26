@@ -9,15 +9,6 @@ std::string Pedido::getName() const { return name; }
 
 #include "../db/Database.hpp"
 
-class PedidoController {
-private:
-    Database db;
-
-public:
-    void salvarPedido(const Pedido& pedido);
-    Pedido buscarPedidoPorId(int id);
-};
-
 Pedido::Pedido() : id(0), name("") {}
 
 void Pedido::setId(int id) {

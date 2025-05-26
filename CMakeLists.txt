@@ -21,6 +21,8 @@ add_executable(MVC_Pedido
         models/Pedido.cpp
         controllers/PedidoController.cpp
         db/db_config.h
+        services/PedidoService.cpp
+        services/PedidoService.hpp
 )
 
 target_link_libraries(MVC_Pedido ${PQXX_LIBRARIES})
