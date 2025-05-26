@@ -8,7 +8,7 @@ TipoPagamentoEnum Pagamento::getTpPagamento() const { return tpPagamento; }
 float Pagamento::getQtValorPago() const {return qtValorPago;}
 
 Pagamento::Pagamento() : cdPagamento(0), tpPagamento(), qtValorPago(0) {}
-Pagamento::Pagamento(int cdPagamento) : cdPagamento(cdPagamento) {}
+Pagamento::Pagamento(int cdPagamento) : cdPagamento(cdPagamento), tpPagamento(), qtValorPago(0) {}
 
 void Pagamento::setCdPagamento(int cdPagamento) {
     this->cdPagamento = cdPagamento;
