@@ -19,13 +19,13 @@ Este projeto é uma aplicação exemplo no padrão MVC (Model-View-Controller) e
 ### Instale dependências no Ubuntu/WSL:
 
 ```bash
-sudo apt update
-sudo apt install libpqxx-dev libpq-dev cmake g++
-```
+sudo apt-get update
 
-### Clone este repositório:
-- git clone https://github.com/seu-usuario/seu-repositorio.git
-- cd seu-repositorio
+sudp apt-get install postgresql-16
+sudo apt-get install postgresql-server-dev-16
+sudo apt-get install postgresql-client-16
+sudo apt-get install libpqxx-dev libpq-dev cmake g++
+```
 
 ### Estrutura do projeto:
 
@@ -50,7 +50,7 @@ project/
 
 ### Editar o arquivo de config `config/db_config.h` com as variaveis de acordo com seu host/user do banco
 
-### Processo de compilação:
+### Processo de compilação (acesse a raiz do projeto):
 -- mkdir build
 -- cd build
 -- cmake ..
