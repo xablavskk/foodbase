@@ -5,7 +5,7 @@
 
 Database::Database() {
     try {
-        std::string connStr =
+        const std::string connStr =
             "host=" + std::string(DB_HOST) +
             " port=" + std::to_string(DB_PORT) +
             " dbname=" + DB_NAME +
@@ -15,14 +15,14 @@ Database::Database() {
         conn = new pqxx::connection(connStr);
 
         if (conn->is_open()) {
-            std::cout << "✅ Conexão com o banco de dados estabelecida com sucesso." << std::endl;
+            std::cout << "a conexao foi feita com sucesso." << std::endl;
         } else {
-            std::cerr << "❌ Falha ao abrir a conexão com o banco de dados." << std::endl;
+            std::cerr << "erro ao conectar com banco de dados" << std::endl;
         }
 
     } catch (const std::exception &e) {
-        std::cerr << "❌ Erro ao conectar no banco de dados: " << e.what() << std::endl;
-        conn = nullptr; // importante para evitar acesso posterior inválido
+        std::cerr << "Erro ao conectar no banco de dados: " << e.what() << std::endl;
+        conn = nullptr; // importante para evitar acesso posterior invalido
     }
 }
 
