@@ -10,18 +10,19 @@ class Pagamento {
 private:
     int cdPagamento;
     TipoPagamentoEnum tpPagamento;
-    float qtValorPago;
+    float vlPagamento;
 
 public:
     Pagamento();
-    Pagamento(int cd_pagamento);
-    Pagamento(int cd_pagamento, TipoPagamentoEnum tipo_pagamento, float qt_valor_pago);
+    Pagamento(int cdPagamento);
+    Pagamento(int cdPagamento, TipoPagamentoEnum tpPagamento);
+    Pagamento(int cdPagamento, TipoPagamentoEnum tpPagamento, float vlPagamento);
 
     [[nodiscard]] int getCdPagamento() const;
     [[nodiscard]] TipoPagamentoEnum getTpPagamento() const;
-    [[nodiscard]] float getQtValorPago() const;
+    [[nodiscard]] float getVlPagamento() const;
 
     void setCdPagamento(int cd_pagamento);
-    void setTpPagamento(TipoPagamentoEnum tipo_pagamento);
-    void setQtValorPago(float qt_valor_pago);
+    void setTpPagamento(TipoPagamentoEnum tpPagamento);
+    void setVlPagamento(float vlPagamento);
 };
