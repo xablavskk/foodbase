@@ -11,5 +11,5 @@ private:
 public:
     PedidoService(Database& dbRef);
     Pedido salvarPedido(const Pedido& pedido) const;
-    Pedido buscarPedidoPorId(int id) const;
+    Pedido buscarPedidoPorCd(int cd_pedido) const;
 };

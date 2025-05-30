@@ -31,18 +31,18 @@ int main() {
             cin.ignore();
             cout << "Nome: ";
             getline(cin, nome);
-            Pedido pedido(id, nome);
+            Pedido pedido(pedido);
             pedido = controller.salvarPedido(pedido);
             cout << "Pedido salvo!\n";
 
         } else if (opcao == 2) {
             int id;
             cout << "ID: ";
-            cin >> id;
+            cin >> id;S
             cin.ignore();
-            Pedido pedido = controller.buscarPedidoPorId(id);
-            if (pedido.getId() != -1) {
-                cout << "ID: " << pedido.getId() << " | Nome: " << pedido.getName() << "\n";
+            Pedido pedido = controller.buscarPedidoPorCd(cd_pedido);
+            if (pedido.getCdPedido() != -1) {
+                cout << "ID: " << pedido.getCdPedido();// << " | Nome: " << pedido.getName() << "\n";
             } else {
                 cout << "Pedido não encontrado.\n";
             }

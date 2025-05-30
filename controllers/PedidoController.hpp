@@ -11,6 +11,12 @@ private:
 
 public:
     PedidoController();
-    Pedido salvarPedido(const Pedido& pedido) const;
-    Pedido buscarPedidoPorId(int id) const;
+    Pedido salvarPedido(const Pedido& pedido) const{
+        return service.salvarPedido(pedido);
+    };
+
+    Pedido buscarPedidoPorCd(int cd_pedido) const{
+        return service.buscarPedidoPorCd(cd_pedido);
+    };
+
 };
