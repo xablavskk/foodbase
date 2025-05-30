@@ -5,13 +5,21 @@
 
 PedidoService::PedidoService(Database& dbRef) : db(dbRef) {}
 
+
+//Salvar pedidos
 Pedido PedidoService::salvarPedido(const Pedido& pedido) const {
-    if (pedido.getName().empty()) {
-        throw std::invalid_argument("Nome do pedido não pode ser vazio.");
+    if (pedido.getCdPedido() == 0) {
+        throw std::invalid_argument("Campos Obrigatórios: Codigo do Pedido.");
     }
 
     std::stringstream ss;
-    ss << "INSERT INTO pedidos (id, nome) VALUES ("<< pedido.getId() << ", '" << pedido.getName() << "') RETURNING id;";
+    ss << "INSERT INTO pedido (cd_pedido, pagamento_cd_pagamento, produto_cd_produto, st_pedido) VALUES ("
+    << pedido.getCdPedido() << ", "
+    << pedido.getPagamento_cd_pagamento() << ", "
+    << pedido.getProduto_cd_produto() << ", '"
+    << pedido.getStPedido() << "') RETURNING cd_pedido;"; 
+    
+    //teste << pedido.getCdPagamento() << ", '" << pedido.getPagamento_cd_pagamento() << ",'" << pedido.getProduto_cd_produto() << ",'" << pedido.getStPedido() << "' 
 
     auto result = db.executarQuery(ss.str());
 
@@ -22,13 +30,13 @@ Pedido PedidoService::salvarPedido(const Pedido& pedido) const {
     return pedido;
 }
 
-Pedido PedidoService::buscarPedidoPorId(int id) const {
-    if (id == 0) {
-        throw std::invalid_argument("Id inválido.");
+Pedido PedidoService::buscarPedidoPorCd(int cd_pedido) const {
+    if (cd_pedido == 0) {
+        throw std::invalid_argument("Codigo inválido.");
     }
 
     std::stringstream ss;
-    ss << "SELECT * FROM pedidos WHERE id = " << id << ";";
+    ss << "SELECT * FROM pedido WHERE cd_pedido = " << cd_pedido << ";";
 
     auto result = db.executarQuery(ss.str());
 
@@ -39,10 +47,12 @@ Pedido PedidoService::buscarPedidoPorId(int id) const {
     int pedidoId = result[0]["id"].as<int>();
     std::string nome = result[0]["nome"].as<std::string>();
 
-    std::cout<<"id"<<pedidoId;
-    std::cout<<"nome"<<nome;
+    std::cout<<"Codigo do Pedido"<< cd_pedido;
+    std::cout<<"Codigo do Pagamento"<< pagamento_cd_pagamento;
+    std::cout<<"Codigo do Produto"<< produto_cd_produto;
+    std::cout<<"Status do Pedido"<< st_pedido;
 
-    Pedido pedido(pedidoId, nome);
+    Pedido pedido(int cd_pedido, int pagamento_cd_pagamento, int produto_cd_produto, std::string st_pedido);
 
     return pedido;
 }
