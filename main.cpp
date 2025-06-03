@@ -1,4 +1,6 @@
 #include <iostream>
+
+#include "controllers/PagamentoController.hpp"
 #include "Pedido.hpp"
 #include "controllers/PedidoController.hpp"
 
@@ -10,12 +12,14 @@ void mostrarMenu() {
     cout << "2 - Buscar Pedido por ID\n";
     cout << "3 - Atualizar Pedido\n";
     cout << "4 - Deletar Pedido\n";
+    cout<< "6 - Consultar pagamento\m";
     cout << "5 - Sair\n";
     cout << "Escolha: ";
 }
 
 int main() {
     PedidoController controller;
+    PagamentoController pagamentoController;
     int opcao;
 
     do {
@@ -67,7 +71,15 @@ int main() {
             // controller.deletarPedido(id);
             cout << "Pedido deletado!\n";
 
-        } else if (opcao == 5) {
+        } else if (opcao == 6) {
+            cout << "Consultando pagamentos...\n";
+            std::vector<Pagamento> pagamentos = pagamentoController.buscarTodosPagamentos();
+
+            for (const auto& pagamento : pagamentos) {
+                cout << "ID: " << pagamento.getCdPagamento() << " | Tipo: " << toChar(pagamento.getTpPagamento())<<endl;
+            }
+        }
+        else if (opcao == 5) {
             cout << "Saindo...\n";
         } else {
             cout << "Opção inválida!\n";

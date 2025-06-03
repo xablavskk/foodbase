@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/MVC_Pedido.dir/main.cpp.o CMakeFiles/MVC_Pedido.dir/db/Database.cpp.o CMakeFiles/MVC_Pedido.dir/models/Pedido.cpp.o CMakeFiles/MVC_Pedido.dir/controllers/PedidoController.cpp.o -o MVC_Pedido  -lpqxx 

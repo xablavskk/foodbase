@@ -21,7 +21,7 @@ Este projeto é uma aplicação exemplo no padrão MVC (Model-View-Controller) e
 ```bash
 sudo apt-get update
 
-sudp apt-get install postgresql-16
+sudo apt-get install postgresql-16
 sudo apt-get install postgresql-server-dev-16
 sudo apt-get install postgresql-client-16
 sudo apt-get install libpqxx-dev libpq-dev cmake g++
