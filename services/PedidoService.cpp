@@ -1,5 +1,5 @@
 #include "PedidoService.hpp"
-#include "PagamentoService.cpp"
+#include "PagamentoService.hpp"
 #include <iostream>
 #pragma once
 
@@ -7,23 +7,19 @@ PedidoService::PedidoService(Database& dbRef, PagamentoService& pagamentoService
 
 
 //Salvar pedidos
-Pedido PedidoService::salvarPedido(const Pedido& pedido, const Pagamento& pagamento) const {
+Pedido PedidoService::salvarPedido(Pedido& pedido, const Pagamento& pagamento) const {
     if (pedido.getCdPedido() == 0) {
         throw std::invalid_argument("Campos Obrigatórios: Codigo do Pedido.");
     }
-
-    Pagamento* pagamento = serviceP.salvarPagamento(&pagamento);
 
     pedido.setPagamento(&pagamento);
 
     std::stringstream ss;
     ss << "INSERT INTO pedido (pagamento_cd_pagamento, produto_cd_produto, st_pedido) VALUES ("
-    << pedido.getPagamento().getCdPagamento() << ", "
+    << pedido.getPagamento()->getCdPagamento() << ", "
     << pedido.getProduto() << ", '"
     << pedido.getStPedido() << "') RETURNING cd_pedido;"; 
     
-    //teste << pedido.getCdPagamento() << ", '" << pedido.getpagamento() << ",'" << pedido.getProduto_cd_produto() << ",'" << pedido.getStPedido() << "' 
-
     auto result = db.executarQuery(ss.str());
 
     if (result.empty()) {
@@ -55,7 +51,7 @@ Pedido PedidoService::buscarPedidoPorCd(int cdPedido) const {
     std::cout<<"Codigo do Produto"<< produto_cd_produto;
     std::cout<<"Status do Pedido"<< stPedido;
 
-    Pedido pedido(int cdPedido, int pagamento, int produto_cd_produto, std::string stPedido);
+    Pedido pedido(cdPedido, pagamento, produto_cd_produto, stPedido);
 
     return pedido;
 }
