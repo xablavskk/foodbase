@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../models/Pedido.hpp"
+#include "../models/Pagamento.hpp"
 #include "../services/PedidoService.hpp"
 #include "../db/Database.hpp"
 
@@ -11,12 +12,12 @@ private:
 
 public:
     PedidoController();
-    Pedido salvarPedido(const Pedido& pedido) const{
-        return service.salvarPedido(pedido);
+    Pedido salvarPedido(const Pedido& pedido, const Pagamento& pagamento) const{
+        return service.salvarPedido(pedido, pagamento);
     };
 
-    Pedido buscarPedidoPorCd(int cd_pedido) const{
-        return service.buscarPedidoPorCd(cd_pedido);
+    Pedido buscarPedidoPorCd(int cdPedido) const{
+        return service.buscarPedidoPorCd(cdPedido);
     };
 
 };

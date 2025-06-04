@@ -2,6 +2,7 @@
 
 #include "controllers/PagamentoController.hpp"
 #include "Pedido.hpp"
+#include "Pagamento.hpp"
 #include "controllers/PedidoController.hpp"
 
 using namespace std;
@@ -12,7 +13,7 @@ void mostrarMenu() {
     cout << "2 - Buscar Pedido por ID\n";
     cout << "3 - Atualizar Pedido\n";
     cout << "4 - Deletar Pedido\n";
-    cout<< "6 - Consultar pagamento\m";
+    cout<< "6 - Consultar pagamento\n";
     cout << "5 - Sair\n";
     cout << "Escolha: ";
 }
@@ -36,15 +37,16 @@ int main() {
             cout << "Nome: ";
             getline(cin, nome);
             Pedido pedido(pedido);
-            pedido = controller.salvarPedido(pedido);
+            Pagamento pagamento = Pagamento();
+            pedido = controller.salvarPedido(pedido, pagamento);
             cout << "Pedido salvo!\n";
 
         } else if (opcao == 2) {
-            int id;
+            int cdPedido;
             cout << "ID: ";
-            cin >> id;S
+            cin >> cdPedido;
             cin.ignore();
-            Pedido pedido = controller.buscarPedidoPorCd(cd_pedido);
+            Pedido pedido = controller.buscarPedidoPorCd(cdPedido);
             if (pedido.getCdPedido() != -1) {
                 cout << "ID: " << pedido.getCdPedido();// << " | Nome: " << pedido.getName() << "\n";
             } else {

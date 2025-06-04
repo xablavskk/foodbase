@@ -1,12 +1,13 @@
 #pragma once
 #include <string>
+#include "Pagamento.hpp"
 
 class Pedido {
 private:
-    int cd_pedido;
-    int pagamento_cd_pagamento;
+    int cdPedido;
+    Pagamento* pagamento;
     int produto_cd_produto;
-    std::string st_pedido;
+    std::string stPedido;
 
 
     // [[nodiscard]] em C++ serve para indicar
@@ -15,17 +16,18 @@ private:
 
 public:
 
-    Pedido(int cd_pedido, int pagamento_cd_pagamento, int produto_cd_produto, std::string st_pedido);
+    Pedido(int cdPedido, Pagamento* pagamento, int produto_cd_produto, std::string stPedido);
 
     Pedido();
 
     [[nodiscard]] int getCdPedido() const;
-    [[nodiscard]] int getPagamento_cd_pagamento() const;
+    [[nodiscard]] Pagamento* getPagamento() const;
     [[nodiscard]] int getProduto_cd_produto() const;
     [[nodiscard]] std::string getStPedido() const;
 
-    void setCdPedido(int id);   
-    void setPagamento_cd_pagamento(int pagamento);  
+
+    void setCdPedido(int cdPedido);
+    void setPagamento(Pagamento* pagamento);
     void setProduto_cd_produto(int produto);
     void setStPedido(std::string& status);
 };

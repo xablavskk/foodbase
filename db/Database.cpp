@@ -28,7 +28,7 @@ Database::Database() {
 
 Database::~Database() {
     if (conn) {
-        conn->disconnect();
+        conn->close();
         delete conn;
     }
 }
