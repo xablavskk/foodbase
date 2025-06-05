@@ -7,7 +7,7 @@ PedidoService::PedidoService(Database& dbRef, PagamentoService& pagamentoService
 
 
 //Salvar pedidos
-Pedido PedidoService::salvarPedido(Pedido& pedido, const Pagamento& pagamento) const {
+Pedido PedidoService::salvarPedido(Pedido &pedido, Pagamento &pagamento) const {
     if (pedido.getCdPedido() == 0) {
         throw std::invalid_argument("Campos Obrigatórios: Codigo do Pedido.");
     }
@@ -17,7 +17,7 @@ Pedido PedidoService::salvarPedido(Pedido& pedido, const Pagamento& pagamento) c
     std::stringstream ss;
     ss << "INSERT INTO pedido (pagamento_cd_pagamento, produto_cd_produto, st_pedido) VALUES ("
     << pedido.getPagamento()->getCdPagamento() << ", "
-    << pedido.getProduto() << ", '"
+    << pedido.getProduto_cd_produto() << ", '"
     << pedido.getStPedido() << "') RETURNING cd_pedido;"; 
     
     auto result = db.executarQuery(ss.str());
@@ -35,7 +35,18 @@ Pedido PedidoService::buscarPedidoPorCd(int cdPedido) const {
     }
 
     std::stringstream ss;
-    ss << "SELECT * FROM pedido WHERE cdPedido = " << cdPedido << ";";
+    ss << "SELECT "
+       << "pe.cd_pedido, "
+       << "pe.st_pedido, "
+       << "pa.cd_pagamento, "
+       << "pa.vl_pagamento, "
+       << "pa.tp_pagamento "
+       // << "pr.cd_produto, "
+       // << "pr.ds_produto "
+       << "FROM pedido pe "
+       << "JOIN pagamento pa ON pe.pagamento_cd_pagamento = pa.cd_pagamento "
+       // << "JOIN produto pr ON pe.cd_produto = pr.cd_produto "
+       << "WHERE pe.cd_pedido = " << cdPedido << ";";
 
     auto result = db.executarQuery(ss.str());
 
@@ -43,15 +54,27 @@ Pedido PedidoService::buscarPedidoPorCd(int cdPedido) const {
         throw std::runtime_error("Erro ao buscar pedido: resultado vazio.");
     }
 
-    int pedidoId = result[0]["id"].as<int>();
-    std::string nome = result[0]["nome"].as<std::string>();
+    int cdPedidoResult = result[0]["cd_pedido"].as<int>();
+    std::string stPedido = result[0]["st_pedido"].as<std::string>();
+    int cdPagamento = result[0]["cd_pagamento"].as<int>();
+    double vlPagamento = result[0]["vl_pagamento"].as<double>();
 
-    std::cout<<"Codigo do Pedido"<< cdPedido;
-    std::cout<<"Codigo do Pagamento"<< pagamento;
-    std::cout<<"Codigo do Produto"<< produto_cd_produto;
-    std::cout<<"Status do Pedido"<< stPedido;
+    std::string tipoPagamentoStr = result[0]["tp_pagamento"].as<std::string>();
+    char tipoPagamento = tipoPagamentoStr.empty() ? '?' : tipoPagamentoStr[0];
 
-    Pedido pedido(cdPedido, pagamento, produto_cd_produto, stPedido);
+    // int cdProduto = result[0]["cd_produto"].as<int>();
+    // std::string dsProduto = result[0]["ds_produto"].as<std::string>();
+
+    Pagamento* pagamento = new Pagamento(cdPagamento, toEnum(tipoPagamento), vlPagamento);
+
+    std::cout << "Codigo do Pedido: " << cdPedidoResult << std::endl;
+    std::cout << "Status do Pedido: " << stPedido << std::endl;
+    std::cout << "Codigo do Pagamento: " << cdPagamento << ", Valor: " << vlPagamento << ", Tipo do Pagamento: " <<
+            toChar(pagamento->getTpPagamento()) << std::endl;
+
+    // std::cout << "Codigo do Produto: " << cdProduto << ", Descrição: " << dsProduto << std::endl;
+
+    Pedido pedido(cdPedidoResult, pagamento, 02, stPedido);
 
     return pedido;
 }

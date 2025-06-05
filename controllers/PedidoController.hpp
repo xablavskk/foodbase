@@ -14,7 +14,7 @@ private:
 
 public:
     PedidoController();
-    Pedido salvarPedido(Pedido& pedido, const Pagamento& pagamento) const;/* isso ta errado{
+    Pedido salvarPedido(Pedido &pedido, Pagamento &pagamento) const;/* isso ta errado{
         return service.salvarPedido(pedido, pagamento); 
     };*/
 

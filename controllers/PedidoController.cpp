@@ -8,7 +8,7 @@ PedidoController::PedidoController()
 {}
 
 //metodo que salva pedido
-Pedido PedidoController::salvarPedido(Pedido& pedido, const Pagamento& pagamento) const { //, const Pagamento& pagamento
+Pedido PedidoController::salvarPedido(Pedido &pedido, Pagamento &pagamento) const { //, const Pagamento& pagamento
     return service.salvarPedido(pedido, pagamento);
 }
 

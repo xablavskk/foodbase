@@ -33,17 +33,17 @@ std::string Pedido::getStPedido() const {
 }
 
 void Pedido::setCdPedido(int cdPedido) {
-    this-> cdPedido;
+    this-> cdPedido = cdPedido;
 }
 
 void Pedido::setPagamento(Pagamento* pagamento) {
-    this-> pagamento;
+    this-> pagamento = pagamento;
 }
 
 void Pedido::setProduto_cd_produto(int produto_cd_produto) {
-    this-> produto_cd_produto;
+    this-> produto_cd_produto = produto_cd_produto;
 }
 
 void Pedido::setStPedido(std::string& stPedido) {
-    this-> stPedido;
+    this-> stPedido = stPedido;
 }
