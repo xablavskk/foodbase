@@ -8,17 +8,14 @@ PedidoService::PedidoService(Database& dbRef, PagamentoService& pagamentoService
 
 //Salvar pedidos
 Pedido PedidoService::salvarPedido(Pedido &pedido, Pagamento &pagamento) const {
-    if (pedido.getCdPedido() == 0) {
-        throw std::invalid_argument("Campos Obrigatórios: Codigo do Pedido.");
+    if (pedido.getStPedido() == "") {
+        throw std::invalid_argument("O pedido precisa ter um status.");
     }
 
     pedido.setPagamento(&pagamento);
 
     std::stringstream ss;
-    ss << "INSERT INTO pedido (pagamento_cd_pagamento, produto_cd_produto, st_pedido) VALUES ("
-    << pedido.getPagamento()->getCdPagamento() << ", "
-    << pedido.getProduto_cd_produto() << ", '"
-    << pedido.getStPedido() << "') RETURNING cd_pedido;"; 
+    ss << "INSERT INTO pedido (pagamento_cd_pagamento, st_pedido) VALUES (" << pedido.getPagamento()->getCdPagamento() << ", '" << pedido.getStPedido() << "') RETURNING cd_pedido, st_pedido;";
     
     auto result = db.executarQuery(ss.str());
 
@@ -26,7 +23,11 @@ Pedido PedidoService::salvarPedido(Pedido &pedido, Pagamento &pagamento) const {
         throw std::runtime_error("Erro ao salvar pedido: resultado vazio.");
     }
 
-    return pedido;
+    int cdPedido = result[0]["cd_pedido"].as<int>();
+    std::string stPedido = result[0]["st_pedido"].as<std::string>();
+
+    Pedido pedidoRetorno(cdPedido, pedido.getPagamento(), 0, stPedido);
+    return pedidoRetorno;
 }
 
 Pedido PedidoService::buscarPedidoPorCd(int cdPedido) const {
@@ -93,6 +94,6 @@ JOIN
     ON pe.cd_pagamento = pa.cd_pagamento 
 JOIN 
     produto pr 
-    ON pe.cd_produto = pr.cd_produto where pe.cd_pedido = cd_pedido;*/
+    ON pe.cd_produto = pr.cd_produto where pe.cd_pedido = 2;*/
 
 

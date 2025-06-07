@@ -14,6 +14,14 @@ Pedido::Pedido(int cdPedido, Pagamento* pagamento, int produto_cd_produto, std::
 // Construtor vazio
 Pedido::Pedido() : cdPedido(0), pagamento(nullptr), produto_cd_produto(0), stPedido("") {}
 
+Pedido::Pedido(Pagamento *pagamento, int produto_cd_produto, std::string stPedido) : cdPedido(0), pagamento(pagamento),
+    produto_cd_produto(produto_cd_produto), stPedido(std::move(stPedido)) {
+}
+
+Pedido::Pedido(Pagamento *pagamento, std::string stPedido) : cdPedido(0), pagamento(pagamento), produto_cd_produto(0),
+                                                             stPedido(std::move(stPedido)) {
+}
+
 
 //Gets e sets
 int Pedido::getCdPedido() const {

@@ -17,7 +17,8 @@ private:
 public:
 
     Pedido(int cdPedido, Pagamento* pagamento, int produto_cd_produto, std::string stPedido);
-
+    Pedido(Pagamento* pagamento, int produto_cd_produto, std::string stPedido);
+    Pedido(Pagamento* pagamento, std::string stPedido);
     Pedido();
 
     [[nodiscard]] int getCdPedido() const;

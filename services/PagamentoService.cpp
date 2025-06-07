@@ -17,8 +17,10 @@ Pagamento PagamentoService::salvarPagamento(const Pagamento& pagamento) const {
     // stringstream para executar a query no banco
 
     std::stringstream ss;
-    ss << "INSERT INTO pagamento (cd_pagamento, tp_pagamento, vl_pagamento) VALUES ("<< pagamento.getCdPagamento() << ", '" << toChar(pagamento.getTpPagamento()) << ", '" << pagamento.getVlPagamento() << "') RETURNING id;";
+    ss << "INSERT INTO pagamento (tp_pagamento, vl_pagamento) VALUES ('"<< toChar(pagamento.getTpPagamento()) << "', " << pagamento.getVlPagamento() << ") RETURNING cd_pagamento, tp_pagamento, vl_pagamento;";
 
+    std::cout << ss.str() << std::endl;
+    std::cout << "INSERIU OS DADOS\n" << std::endl;
 
     // resultado da query e execucao pelo service db
     // chamada do metodo executarQuery do servico db
@@ -29,9 +31,32 @@ Pagamento PagamentoService::salvarPagamento(const Pagamento& pagamento) const {
         throw std::runtime_error("Erro ao salvar pagamento: resultado vazio.");
     }
 
-    // se tudo der certo, o objeto é retornado
+    // com o reotrno da query, mapeamos os results para recebermos os atributos obtidos das colunas do banco.
+    // o result é uma matriz de valores, armazenando linhas e colunas
+    // result[0] é pego o primeiro resultado obtido juntamnete ao resultado da coluna cd_pagamento por exemplo -> result[0]["cd_pagamento"] do tipo inteiro .as<int>
 
-    return pagamento;
+    int codigoPagamento = result[0]["cd_pagamento"].as<int>();
+
+    double valorPagamento = result[0]["vl_pagamento"].as<double>();
+
+    std::cout << codigoPagamento << std::endl;
+    std::cout << valorPagamento << std::endl;
+
+    // temos o mapeamento de string no tipoPagamento pois trabalhamos com um enum no projeto. Ele é tido como string e depois é feito a conversao para o tipoEnum do TipoPagamentoEnum
+    std::string tipoPagamentoStr = result[0]["tp_pagamento"].as<std::string>();
+
+    std::cout << tipoPagamentoStr << std::endl;
+    char tipoPagamento = tipoPagamentoStr.empty() ? '?' : tipoPagamentoStr[0];
+
+    std::cout << "codigo: " << codigoPagamento << std::endl;
+    std::cout << "tipo pagamento: " << tipoPagamento << std::endl;
+    std::cout << "valor pago: " << valorPagamento << std::endl;
+
+    TipoPagamentoEnum tipoEnum = toEnum(tipoPagamento);
+
+    Pagamento pagamentoConstrutor(codigoPagamento, tipoEnum, valorPagamento);
+
+    return pagamentoConstrutor;
 }
 
 // metodo para buscar um unico pagamento, que tambem, retorna um objeto pagamento
@@ -63,7 +88,7 @@ Pagamento PagamentoService::buscarPagamentoPorId(int id) const {
     // temos o mapeamento de string no tipoPagamento pois trabalhamos com um enum no projeto. Ele é tido como string e depois é feito a conversao para o tipoEnum do TipoPagamentoEnum
     std::string tipoPagamentoStr = result[0]["tp_pagamento"].as<std::string>();
     char tipoPagamento = tipoPagamentoStr.empty() ? '?' : tipoPagamentoStr[0];
-    float valorPagamento = result[0]["vl_pagamento"].as<float>();
+    double valorPagamento = result[0]["vl_pagamento"].as<double>();
 
     std::cout << "codigo: " << codigoPagamento << std::endl;
     std::cout << "tipo pagamento: " << tipoPagamento << std::endl;
