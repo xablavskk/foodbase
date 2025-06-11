@@ -28,6 +28,12 @@ add_executable(MVC_Pedido
         models/Pagamento.cpp
         enums/TipoPagamentoEnum.hpp
         controllers/PagamentoController.cpp
+        models/Produto.cpp
+        models/Produto.hpp
+        controllers/ProdutoController.cpp
+        controllers/ProdutoController.hpp
+        services/ProdutoService.cpp
+        services/ProdutoService.hpp
 )
 
 target_link_libraries(MVC_Pedido ${PQXX_LIBRARIES})

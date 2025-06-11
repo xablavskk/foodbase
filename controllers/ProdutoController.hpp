@@ -1,16 +1,29 @@
 //
 // Created by vmep on 6/6/25.
 //
+#pragma once
 
-#ifndef PRODUTOCONTROLLER_H
-#define PRODUTOCONTROLLER_H
+#include "../models/Produto.hpp"
+#include "../services/ProdutoService.hpp"
+#include "../db/Database.hpp"
+
 
 
 
 class ProdutoController {
 
+private:
+    Database db;
+    ProdutoService service;
+
+public:
+    ProdutoController();
+    Produto salvarProduto(const Produto& produto) const;
+    Produto buscarProdutoPorId(int id) const;
+    Produto atualizarProduto(const Produto& produto) const;
+    Produto deletarProduto(int id);
 };
 
 
 
-#endif //PRODUTOCONTROLLER_H
+

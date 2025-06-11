@@ -11,7 +11,7 @@ Pedido PedidoService::salvarPedido(const Pedido& pedido) const {
     }
 
     std::stringstream ss;
-    ss << "INSERT INTO pedidos (id, nome) VALUES ("<< pedido.getId() << ", '" << pedido.getName() << "') RETURNING id;";
+    ss << "INSERT INTO pedido (cd_pedido, st_pedido) VALUES ("<< pedido.getId() << ", '" << pedido.getName() << "') RETURNING cd_pedido;";
 
     auto result = db.executarQuery(ss.str());
 
