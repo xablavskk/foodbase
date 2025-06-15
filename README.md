@@ -1,6 +1,6 @@
 # Projeto MVC em C++ com PostgreSQL (`libpqxx`)
 
-Este projeto é uma aplicação exemplo no padrão MVC (Model-View-Controller) escrita em C++, utilizando a biblioteca `libpqxx` para comunicação com o banco de dados PostgreSQL.
+Este projeto é uma aplicação exemplo no padrão MVC (Model-View-Controller) escrita em C++, utilizando a biblioteca `libpqxx` para comunicação com o banco de dados PostgreSQL e a biblioteca `crow.h` para chamadas http.
 
 ---
 
@@ -11,6 +11,7 @@ Este projeto é uma aplicação exemplo no padrão MVC (Model-View-Controller) e
 - PostgreSQL instalado e rodando
 - `libpqxx` (cliente C++ para PostgreSQL)
 - Ambiente Linux ou WSL (Windows Subsystem for Linux)
+- `crow.h` para chamadas http
 
 ---
 
@@ -25,27 +26,17 @@ sudo apt-get install postgresql-16
 sudo apt-get install postgresql-server-dev-16
 sudo apt-get install postgresql-client-16
 sudo apt-get install libpqxx-dev libpq-dev cmake g++
+sudo apt install libasio-dev
 ```
-
-### Estrutura do projeto:
-
-project/
-├── CMakeLists.txt
-├── main.cpp
-├── config/
-│   └── db_config.h
-├── db/
-│   ├── Database.cpp
-│   └── Database.hpp
-├── models/
-│   ├── Pedido.cpp
-│   └── Pedido.hpp
-├── controllers/
-│   ├── PedidoController.cpp
-│   └── PedidoController.hpp
+- git clone https://github.com/CrowCpp/Crow.git (no sistema wsl/linux para download da biblioteca no sistema)
+- cd Crow
+- mkdir build
+- cd build/
+- cmake .. -DCROW_BUILD_EXAMPLES=OFF -DCROW_BUILD_TESTS=OFF
+- sudo make install
 
 ### Config do banco de dados
-- sudo -i -u postgres
+- sudo -i -u (seu usuario)
 - psql
 
 ### Editar o arquivo de config `config/db_config.h` com as variaveis de acordo com seu host/user do banco

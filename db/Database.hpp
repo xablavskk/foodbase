@@ -10,4 +10,5 @@ public:
     Database();
     ~Database();
     pqxx::result executarQuery(const std::string& sql) const;
+    pqxx::connection* getConnection() const;
 };

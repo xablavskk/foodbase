@@ -1,3 +1,0 @@
-/mnt/c/Users/mario/CLionProjects/untitled/build/CMakeFiles/MVC_Pedido.dir
-/mnt/c/Users/mario/CLionProjects/untitled/build/CMakeFiles/edit_cache.dir
-/mnt/c/Users/mario/CLionProjects/untitled/build/CMakeFiles/rebuild_cache.dir

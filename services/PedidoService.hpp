@@ -1,8 +1,11 @@
 #pragma once
-#include <string>
 
+#include <string>
 #include "Pedido.hpp"
 #include "../db/Database.hpp"
+#include "PagamentoService.hpp"
+
+class PagamentoService;
 
 class PedidoService {
 private:
@@ -10,6 +13,8 @@ private:
 
 public:
     PedidoService(Database& dbRef);
-    Pedido salvarPedido(const Pedido& pedido) const;
-    Pedido buscarPedidoPorId(int id) const;
+
+    Pedido salvarPedido(Pedido &pedido) const;
+    Pedido atualizarPedido(const Pedido &pedido) const;
+    Pedido buscarPedidoPorCd(int cdPedido) const;
 };

@@ -20,9 +20,20 @@ add_executable(MVC_Pedido
         db/Database.cpp
         models/Pedido.cpp
         controllers/PedidoController.cpp
-        db/db_config.h
         services/PedidoService.cpp
         services/PedidoService.hpp
+        services/PagamentoService.cpp
+        services/PagamentoService.hpp
+        models/Pagamento.cpp
+        enums/TipoPagamentoEnum.hpp
+        controllers/PagamentoController.cpp
+        models/Produto.cpp
+        models/Produto.hpp
+        controllers/ProdutoController.cpp
+        controllers/ProdutoController.hpp
+        services/ProdutoService.cpp
+        services/ProdutoService.hpp
+        resources/EnvLoader.cpp
 )
 
 target_link_libraries(MVC_Pedido ${PQXX_LIBRARIES})
