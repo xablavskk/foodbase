@@ -4,6 +4,19 @@ Este projeto é uma aplicação exemplo no padrão MVC (Model-View-Controller) e
 
 ---
 
+### AVISO DE CONFIGURACAO PARA CONEXAO AO BANCO DE DADOS POSTGRESQL
+
+#### é necessário na pasta resources/ adicionar o arquivo config.env com as variáveis de conexao do banco
+#### exemplo da estrutura do arquivo com os parametros para conexao:
+
+#### DB_HOST=localhost
+#### DB_PORT=5432
+#### DB_NAME=foodbase
+#### DB_USER=postgres
+#### DB_PASSWORD=root
+
+---
+
 ## Requisitos
 
 - C++17 ou superior
@@ -38,17 +51,6 @@ sudo apt install libasio-dev
 ### Config do banco de dados
 - sudo -i -u (seu usuario)
 - psql
-
-## AVISO
-
-### é necessário na pasta resources/ adicionar o arquivo config.env com as variáveis de conexao do banco
-### exemplo da estrutura do arquivo com os parametros para conexao:
-
-#### DB_HOST=localhost
-#### DB_PORT=5432
-#### DB_NAME=foodbase
-#### DB_USER=postgres
-#### DB_PASSWORD=root
 
 ### Processo de compilação (acesse a raiz do projeto):
 -- mkdir build
