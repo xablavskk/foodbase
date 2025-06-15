@@ -1,11 +1,18 @@
 #include "PedidoController.hpp"
 
-PedidoController::PedidoController() : service(db) {}
+//construtor do controller
+PedidoController::PedidoController()
+    : db()
+    , pagamentoService(db)
+    , service(db, pagamentoService)
+{}
 
-Pedido PedidoController::salvarPedido(const Pedido& pedido) const {
-    return service.salvarPedido(pedido);
+//metodo que salva pedido
+Pedido PedidoController::salvarPedido(Pedido &pedido, Pagamento &pagamento) const { //, const Pagamento& pagamento
+    return service.salvarPedido(pedido, pagamento);
 }
 
-Pedido PedidoController::buscarPedidoPorId(int id) const {
-    return service.buscarPedidoPorId(id);
+//metodo que busca pedido
+Pedido PedidoController::buscarPedidoPorCd(int cdPedido) const {
+    return service.buscarPedidoPorCd(cdPedido);
 }
