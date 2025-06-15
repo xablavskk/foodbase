@@ -21,7 +21,7 @@ public:
     Produto salvarProduto(const Produto& produto) const;
     Produto buscarProdutoPorId(int id) const;
     Produto atualizarProduto(const Produto& produto) const;
-    Produto deletarProduto(int id);
+    void deletarProduto(int id);
 };
 
 

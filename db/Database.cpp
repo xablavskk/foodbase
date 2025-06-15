@@ -30,7 +30,6 @@ bool executarScriptSQL(pqxx::connection* conn, const std::string& caminhoArquivo
 
 Database::Database() {
     EnvLoader& env = EnvLoader::getInstance();
-    std::string config_path = std::filesystem::path(std::filesystem::current_path()) / "resources" / "config.env";
 
     if (!env.isLoaded()) {
         if (!env.loadFromFile("../resources/config.env")) {
@@ -65,13 +64,12 @@ Database::Database() {
         if (conn->is_open()) {
             std::cout << "Conexão com banco de dados realizada com sucesso!" << std::endl;
 
-            if (!executarScriptSQL(conn, "schema.sql")) {
+            std::cout << "Conectado em: " << host << ":" << port << "/" << dbname << std::endl;
+
+            if (!executarScriptSQL(conn, "../db/schema.sql")) {
                 std::cerr << "[ERRO] Erro ao executar schema.sql" << std::endl;
                 return;
             }
-
-
-            std::cout << "Conectado em: " << host << ":" << port << "/" << dbname << std::endl;
         } else {
             std::cerr << "Erro ao conectar com banco de dados" << std::endl;
         }
@@ -87,6 +85,10 @@ Database::~Database() {
         conn->close();
         delete conn;
     }
+}
+
+pqxx::connection* Database::getConnection() const {
+    return conn;
 }
 
 pqxx::result Database::executarQuery(const std::string& sql) const {

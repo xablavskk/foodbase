@@ -10,11 +10,11 @@ class PagamentoService;
 class PedidoService {
 private:
     Database& db;
-    PagamentoService& serviceP;
 
 public:
-    PedidoService(Database& dbRef, PagamentoService& pagamentoService);
+    PedidoService(Database& dbRef);
 
-    Pedido salvarPedido(Pedido &pedido, Pagamento &pagamento) const;
+    Pedido salvarPedido(Pedido &pedido) const;
+    Pedido atualizarPedido(const Pedido &pedido) const;
     Pedido buscarPedidoPorCd(int cdPedido) const;
 };

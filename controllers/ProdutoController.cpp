@@ -19,8 +19,8 @@ Produto ProdutoController::atualizarProduto(const Produto &produto) const {
     return service.atualizarProduto(produto);
 }
 
-Produto ProdutoController::deletarProduto(int id) {
-    return service.deletarProduto(id);
+void ProdutoController::deletarProduto(int id) {
+    service.deletarProduto(id);
 }
 
 

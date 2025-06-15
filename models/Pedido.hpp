@@ -1,12 +1,13 @@
 #pragma once
 #include <string>
 #include "Pagamento.hpp"
+#include "Produto.hpp"
 
 class Pedido {
 private:
     int cdPedido;
     Pagamento* pagamento;
-    int produto_cd_produto;
+    Produto* produto;
     std::string stPedido;
 
 
@@ -16,19 +17,20 @@ private:
 
 public:
 
-    Pedido(int cdPedido, Pagamento* pagamento, int produto_cd_produto, std::string stPedido);
-    Pedido(Pagamento* pagamento, int produto_cd_produto, std::string stPedido);
+    Pedido(int cdPedido, Pagamento* pagamento, Produto* produto, std::string stPedido);
+    Pedido(Pagamento* pagamento, Produto* produto, std::string stPedido);
     Pedido(Pagamento* pagamento, std::string stPedido);
+    Pedido(int cdPedido, Pagamento* pagamento, std::string stPedido);
     Pedido();
 
     [[nodiscard]] int getCdPedido() const;
     [[nodiscard]] Pagamento* getPagamento() const;
-    [[nodiscard]] int getProduto_cd_produto() const;
+    [[nodiscard]] Produto* getProduto() const;
     [[nodiscard]] std::string getStPedido() const;
 
 
     void setCdPedido(int cdPedido);
     void setPagamento(Pagamento* pagamento);
-    void setProduto_cd_produto(int produto);
+    void setProduto(Produto* produto);
     void setStPedido(std::string& status);
 };

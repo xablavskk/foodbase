@@ -2,15 +2,19 @@
 
 //construtor do controller
 PedidoController::PedidoController()
-    : db()
-    , pagamentoService(db)
-    , service(db, pagamentoService)
+    : service(db)
 {}
 
 //metodo que salva pedido
-Pedido PedidoController::salvarPedido(Pedido &pedido, Pagamento &pagamento) const { //, const Pagamento& pagamento
-    return service.salvarPedido(pedido, pagamento);
+Pedido PedidoController::salvarPedido(Pedido &pedido) const { //, const Pagamento& pagamento
+    return service.salvarPedido(pedido);
 }
+
+//metodo que atualiza um pedido
+Pedido PedidoController::atualizarPedido(Pedido &pedido) const {
+    return service.atualizarPedido(pedido);
+}
+
 
 //metodo que busca pedido
 Pedido PedidoController::buscarPedidoPorCd(int cdPedido) const {

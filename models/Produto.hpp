@@ -10,15 +10,15 @@ using namespace std;
 class Produto {
 
 private:
-    int id;
-    string name;
-    string description;
-    double value;
-    string status;
+    int cdProduto;
+    string nmProduto;
+    string dsProduto;
+    double vlProduto;
+    string stProduto;
 
 public:
-    Produto(int id, string name, string description, double value, string status);
-
+    Produto(int cdProduto, string nmProduto, string dsProduto, double vlProduto, string stProduto);
+    Produto(string nmProduto, string dsProduto, double vlProduto, string stProduto);
     Produto();
 
 
@@ -26,16 +26,16 @@ public:
     // ao compilador que o valor de retorno de uma função
     // não deve ser ignorado. Se for ignorado, o compilador gera um warning (aviso)
 
-    [[nodiscard]] int getId() const;
-    [[nodiscard]] string getName() const;
-    [[nodiscard]] string getDescription() const;
-    [[nodiscard]] double getValue() const;
-    [[nodiscard]] string getStatus() const;
+    [[nodiscard]] int getCdProduto() const;
+    [[nodiscard]] string getNmProduto() const;
+    [[nodiscard]] string getDsProduto() const;
+    [[nodiscard]] double getVlProduto() const;
+    [[nodiscard]] string getStProduto() const;
 
-    void setId(int id);
-    void setName(const std::string& name);
-    void setDescription(const std::string& description);
-    void setValue(double value);
-    void setStatus(const std::string& status);
+    void setCdProduto(int cdProduto);
+    void setNmProduto(const std::string& nmProduto);
+    void setDsProduto(const std::string& dsProduto);
+    void setVlProduto(double vlProduto);
+    void setStProduto(const std::string& stProduto);
 
 };

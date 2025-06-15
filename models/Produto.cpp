@@ -8,44 +8,46 @@
 
 using namespace std;
 
-Produto::Produto(const int id, std::string name, std::string description, double value, std::string status)
-    : id(id),
-      name(std::move(name)),
-      description(std::move(description)),
-      value(value),
-      status(std::move(status)) {
+Produto::Produto(const int cdProduto, std::string nmProduto, std::string dsProduto, double vlProduto, std::string stProduto)
+    : cdProduto(cdProduto),
+      nmProduto(std::move(nmProduto)),
+      dsProduto(std::move(dsProduto)),
+      vlProduto(vlProduto),
+      stProduto(std::move(stProduto)) {
 }
 
-int Produto::getId() const { return id; }
+Produto::Produto() : cdProduto(0), nmProduto(""), dsProduto(""), vlProduto(0), stProduto("") {}
 
-std::string Produto::getName() const { return name; }
+Produto::Produto(string nmProduto, string dsProduto, double vlProduto, string stProduto) : nmProduto(nmProduto), dsProduto(dsProduto), vlProduto(vlProduto), stProduto(stProduto) {};
 
-std::string Produto::getDescription() const { return description; }
+int Produto::getCdProduto() const { return cdProduto; }
 
-double Produto::getValue() const { return value; }
+std::string Produto::getNmProduto() const { return nmProduto; }
 
-std::string Produto::getStatus() const { return status; }
+std::string Produto::getDsProduto() const { return dsProduto; }
 
-Produto::Produto() : id(0), name(""), description(""), value(0), status("") {}
+double Produto::getVlProduto() const { return vlProduto; }
 
-void Produto::setId(const int id) {
-    this->id = id;
+std::string Produto::getStProduto() const { return stProduto; }
+
+void Produto::setCdProduto(const int cdProduto) {
+    this->cdProduto = cdProduto;
 }
 
-void Produto::setName(const std::string& name) {
-    this->name = name;
+void Produto::setNmProduto(const std::string& nmProduto) {
+    this->nmProduto = nmProduto;
 }
 
-void Produto::setDescription(const std::string& description) {
-    this->description = description;
+void Produto::setDsProduto(const std::string& dsProduto) {
+    this->dsProduto = dsProduto;
 }
 
-void Produto::setValue(const double value) {
-    this->value = value;
+void Produto::setVlProduto(const double vlProduto) {
+    this->vlProduto = vlProduto;
 }
 
-void Produto::setStatus(const std::string& status) {
-    this->status = status;
+void Produto::setStProduto(const std::string& stProduto) {
+    this->stProduto = stProduto;
 }
 
 
