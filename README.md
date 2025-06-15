@@ -39,7 +39,16 @@ sudo apt install libasio-dev
 - sudo -i -u (seu usuario)
 - psql
 
-### Editar o arquivo de config `config/db_config.h` com as variaveis de acordo com seu host/user do banco
+## AVISO
+
+### é necessário na pasta resources/ adicionar o arquivo config.env com as variáveis de conexao do banco
+### exemplo da estrutura do arquivo com os parametros para conexao:
+
+#### DB_HOST=localhost
+#### DB_PORT=5432
+#### DB_NAME=foodbase
+#### DB_USER=postgres
+#### DB_PASSWORD=root
 
 ### Processo de compilação (acesse a raiz do projeto):
 -- mkdir build
