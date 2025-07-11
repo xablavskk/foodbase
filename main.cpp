@@ -9,12 +9,22 @@
 #include "Produto.hpp"
 
 #include <crow.h>
+#include <crow/middlewares/cors.h>
 #include <iomanip>
 
 using namespace std;
 
 int main() {
-    crow::SimpleApp app;
+    crow::App<crow::CORSHandler> app;
+
+    auto& cors = app.get_middleware<crow::CORSHandler>();
+
+cors.global()
+    .methods("POST"_method, "GET"_method, "OPTIONS"_method, "PUT"_method)
+    .origin("*")  // pode ser "http://localhost:8000" se quiser restringir
+    .headers("Content-Type");
+
+    //erickson
 
     PedidoController pedidoController;
     PagamentoController pagamentoController;
@@ -79,6 +89,13 @@ int main() {
             resposta["pedido"]["produto"]["stProduto"] = produto.getStProduto();
 
             return crow::response{201, resposta};
+            try {
+    TipoPagamentoEnum tipo = toEnum(tpPagamentoStr[0]);
+} catch (const std::exception& e) {
+    std::cerr << "[ERRO] toEnum falhou: " << e.what() << std::endl;
+    return crow::response{400, "Tipo de pagamento inválido"};
+}
+
         } catch (const std::exception& e) {
             std::cerr << "[ERROR] Exceção ao salvar pedido: " << e.what() << std::endl;
             return {500, std::string("Erro ao salvar pedido: ") + e.what()};

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="stylesheet" href="postPedido.css">
+    <meta charset="UTF-8" />
+    <title>Enviar Pedido FOODBASE</title>
+</head>
+<body>
+    <h1>Enviar Pedido para FOODBASE</h1>
+
+    <form id="pedidoForm">
+        <fieldset>
+            <legend>Produto</legend>
+            <label>Nome Produto:<br />
+                <input type="text" id="nmProduto" required />
+            </label><br />
+            <label>Descrição Produto:<br />
+                <input type="text" id="dsProduto" required />
+            </label><br />
+            <label>Status Produto:<br />
+                <input type="text" id="stProduto" required />
+            </label><br />
+            <label>Valor Produto:<br />
+                <input type="number" step="0.01" id="vlProduto" required />
+            </label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Pagamento</legend>
+            <label>Tipo Pagamento (ex: 'C' para cartão, 'D' para débito):<br />
+                <input type="text" maxlength="1" id="tpPagamento" required />
+            </label><br />
+            <label>Valor Pagamento:<br />
+                <input type="number" step="0.01" id="vlPagamento" required />
+            </label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Pedido</legend>
+            <label>Status Pedido:<br />
+                <input type="text" id="stPedido" required />
+            </label>
+        </fieldset>
+
+        <button type="submit">Enviar Pedido</button>
+    </form>
+
+    <!-- 
+    Remover comentário para testar a requisicao
+    ======================================
+    <h2>Resposta da API:</h2>
+    <pre id="resposta"></pre> 
+    ======================================
+    -->
+
+    <script src="postPedido.js"></script>
+
+</body>
+</html>

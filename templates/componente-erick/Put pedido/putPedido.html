@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="stylesheet" href="putPedido.css" />
+    <meta charset="UTF-8" />
+    <title>Atualizar Pedido - FOODBASE</title>
+</head>
+<body>
+    <h1>Atualizar Pedido</h1>
+
+    <div class="container">
+        <form id="formAtualizar">
+            <label>ID do Pedido:
+                <input type="number" id="cdPedido" required />
+            </label><br />
+
+            <fieldset>
+                <legend>Pagamento</legend>
+                <label>ID Pagamento:
+                    <input type="number" id="cdPagamento" required />
+                </label><br />
+                <label>Tipo de Pagamento (ex: C, D):
+                    <input type="text" id="tpPagamento" maxlength="1" required />
+                </label><br />
+                <label>Valor do Pagamento:
+                    <input type="number" step="0.01" id="vlPagamento" required />
+                </label>
+            </fieldset>
+
+            <label>Status do Pedido:
+                <input type="text" id="stPedido" required />
+            </label><br />
+
+            <button type="submit" id="btnAtualizar">Atualizar Pedido</button>
+        </form>
+    </div>
+
+    <!-- 
+    Remover comentário para testar a requisicao
+    ======================================
+    <h2>Resposta:</h2>
+    <pre id="resposta"></pre> 
+    ======================================
+    -->
+
+    <script src="putPedido.js"></script>
+
+    
+
+</body>
+</html>

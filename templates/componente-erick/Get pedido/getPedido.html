@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="stylesheet" href="getPedido.css">
+    <meta charset="UTF-8" />
+    <title>Consultar Pedido FOODBASE</title>
+</head>
+<body>
+
+    <h1>Consultar Pedido FOODBASE</h1>
+
+    <label for="pedidoId">ID do Pedido:</label>
+    <input type="number" id="pedidoId" min="1" placeholder="Digite o ID do pedido" />
+    <button id="btnConsultar">Consultar</button>
+
+    <div id="resultado" style="display:none;">
+        <h2>Detalhes do Pedido</h2>
+        <p><strong>ID do Pedido:</strong> <span id="cdPedido"></span></p>
+        <p><strong>Status do Pedido:</strong> <span id="stPedido"></span></p>
+
+        <h3>Produto</h3>
+        <p><strong>ID do Produto:</strong> <span id="cdProduto"></span></p>
+        <p><strong>Nome:</strong> <span id="nmProduto"></span></p>
+        <p><strong>Descrição:</strong> <span id="dsProduto"></span></p>
+        <p><strong>Status:</strong> <span id="stProduto"></span></p>
+        <p><strong>Valor:</strong> R$ <span id="vlProduto"></span></p>
+
+        <h3>Pagamento</h3>
+        <p><strong>ID do Pagamento:</strong> <span id="cdPagamento"></span></p>
+        <p><strong>Tipo:</strong> <span id="tpPagamento"></span></p>
+        <p><strong>Valor:</strong> R$ <span id="vlPagamento"></span></p>
+
+    </div>
+
+    <script src="getPedido.js"></script>
+
+    </body>
+</html>

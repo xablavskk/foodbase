@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+    color: #333;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    margin-bottom: 30px;
+    color: #2c3e50;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 25px 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+}
+
+#pedidoId {
+    width: 100%;
+    padding: 12px;
+    font-size: 1em;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+button#btnConsultar {
+    width: 100%;
+    padding: 12px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button#btnConsultar:hover {
+    background-color: #2980b9;
+}
+
+#resultado {
+    margin-top: 30px;
+    display: none;
+    background-color: #fdfdfd;
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 6px solid #3498db;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    font-family: 'Courier New', Courier, monospace;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.result-label {
+    font-weight: bold;
+    color: #34495e;
+}
+
+.result-value {
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
