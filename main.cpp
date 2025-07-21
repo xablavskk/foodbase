@@ -89,12 +89,6 @@ cors.global()
             resposta["pedido"]["produto"]["stProduto"] = produto.getStProduto();
 
             return crow::response{201, resposta};
-            try {
-    TipoPagamentoEnum tipo = toEnum(tpPagamentoStr[0]);
-} catch (const std::exception& e) {
-    std::cerr << "[ERRO] toEnum falhou: " << e.what() << std::endl;
-    return crow::response{400, "Tipo de pagamento inválido"};
-}
 
         } catch (const std::exception& e) {
             std::cerr << "[ERROR] Exceção ao salvar pedido: " << e.what() << std::endl;
